@@ -1,7 +1,7 @@
 import Home from '../components/Home';
 import Login from '../components/Login';
 import NotFound from '../components/NotFound';
-// import Root from '../components/Root';
+import AdminCategories from '../components/AdminCategories';
 import App from './../App';
 
 const routes = [
@@ -18,6 +18,10 @@ const routes = [
         name: 'login',
         exact: true,
         component: Login
+      },
+      {
+        path: '/admin/categories',
+        component: AdminCategories
       },
       {
         path: '',

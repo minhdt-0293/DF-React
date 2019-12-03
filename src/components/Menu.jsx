@@ -8,6 +8,7 @@ const logout = () => {
 const menus = [
   { name: 'Home', to: '/' },
   { name: 'Products', to: '/products' },
+  { name: 'Categories', to: '/admin/categories' },
   { name: 'Login', to: '/login' },
   { name: 'Logout', to: '/login', event: logout }
 ];
