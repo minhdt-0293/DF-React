@@ -20,3 +20,18 @@
 .App-link {
   color: #09d3ac;
 }
+
+.avatar {
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.mgt-15 {
+  margin-top: 15px;
+}
+
+.content {
+  margin-top: 20px;
+}
