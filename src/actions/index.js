@@ -27,3 +27,10 @@ export const setCurrentPage = currentPage => {
     currentPage
   };
 };
+
+export const updateProfile = data => {
+  return {
+    type: types.UPDATE_PROFILE,
+    data
+  };
+};

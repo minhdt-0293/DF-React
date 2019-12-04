@@ -2,6 +2,7 @@ import Home from '../components/Home';
 import Login from '../components/Login';
 import NotFound from '../components/NotFound';
 import AdminCategories from '../components/AdminCategories';
+import Profile from '../components/Profile';
 import App from './../App';
 
 const routes = [
@@ -21,7 +22,14 @@ const routes = [
       },
       {
         path: '/admin/categories',
+        exact: true,
         component: AdminCategories
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        exact: true,
+        component: Profile
       },
       {
         path: '',

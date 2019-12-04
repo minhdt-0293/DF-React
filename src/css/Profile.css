@@ -1,0 +1,17 @@
+.Profile-upload-image {
+  display: flex;
+  align-items: center;
+}
+
+.Profile-image {
+  padding-right: 35px;
+}
+
+.Profile-image img {
+  width: 120px;
+  height: 120px;
+}
+
+.Profile-browser {
+  width: 50%;
+}

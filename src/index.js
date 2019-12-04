@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.css';
 import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory as createHistory } from 'history';
@@ -12,6 +11,7 @@ import reducer from './reducers';
 import rootSaga from './sagas/rootSaga';
 import { renderRoutes } from 'react-router-config';
 import routes from './routes/routes';
+import './css/App.css';
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
