@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './../css/Menu.css';
 import { connect } from 'react-redux';
-
-const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('current_user');
-};
+import * as actions from './../actions/index';
 
 const menus = [
   { name: 'Home', to: '/' },
@@ -44,13 +40,9 @@ const showMenu = menus => {
   return result;
 };
 
-function userLogged() {
-  return localStorage.getItem('token') != null;
-}
-
-const rightMenu = () => {
-  let currentUser = JSON.parse(localStorage.getItem('current_user'));
-  if (userLogged()) {
+const rightMenu = props => {
+  const { currentUser } = props;
+  if (currentUser != null) {
     return (
       <>
         <li className="nav-item"></li>
@@ -80,12 +72,12 @@ const rightMenu = () => {
             <a className="dropdown-item" href="#">
               Settings
             </a>
-            <Link to="/login" onClick={logout} className="dropdown-item">
-              <i
-                className="fa fa-sign-out"
-                aria-hidden="true"
-                onClick={logout}
-              ></i>
+            <Link
+              to="/login"
+              onClick={() => props.logout()}
+              className="dropdown-item"
+            >
+              <i className="fa fa-sign-out" aria-hidden="true"></i>
               Logout
             </Link>
           </div>
@@ -96,7 +88,7 @@ const rightMenu = () => {
   } else {
     return (
       <li>
-        <Link to="/login" onClick={logout}>
+        <Link to="/login">
           <i className="fa fa-sign-out" aria-hidden="true"></i>
           Login
         </Link>
@@ -105,17 +97,27 @@ const rightMenu = () => {
   }
 };
 
-const Menu = props => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">{showMenu(menus)}</ul>
-      <ul className="navbar-nav ml-auto">{rightMenu(props)}</ul>
-    </div>
-  </nav>
-);
+const Menu = props => {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">{showMenu(menus)}</ul>
+        <ul className="navbar-nav ml-auto">{rightMenu(props)}</ul>
+      </div>
+    </nav>
+  );
+};
 
 const mapStateToProps = state => ({
-  current_user: state.update_profile.current_user
+  currentUser: state.user.currentUser
 });
 
-export default connect(mapStateToProps, null)(Menu);
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {
+      dispatch(actions.logOut());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -4,22 +4,23 @@ import PropTypes from 'prop-types';
 const Flash = props => {
   const { type, message } = props;
   let className = `alert alert-${type}`;
+  let elm = document.getElementsByClassName('alert');
   useEffect(() => {
-    let elm = document.getElementsByClassName('alert');
-
-    setTimeout(function() {
-      elm[0].style.display = 'none';
-    }, 3000);
+    if (elm[0] != undefined) {
+      elm[0].style.display = 'block';
+      setTimeout(function() {
+        elm[0].style.display = 'none';
+      }, 3000);
+    }
   });
 
-  return (
-    <div className={className} role="alert">
-      <a className="close" data-dismiss="alert" href="#" aria-hidden="true">
-        &times;
-      </a>
-      {message}
-    </div>
-  );
+  const flash =
+    message === '' ? null : (
+      <div className={className} role="alert">
+        {message}
+      </div>
+    );
+  return flash;
 };
 
 Flash.propTypes = {

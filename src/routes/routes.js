@@ -23,7 +23,14 @@ const routes = [
       {
         path: '/admin/categories',
         exact: true,
-        component: AdminCategories
+        component: AdminCategories,
+        routes: [
+          {
+            path: '/admin/categories/aaaa',
+            component: Home,
+            exact: true
+          }
+        ]
       },
       {
         path: '/profile',
