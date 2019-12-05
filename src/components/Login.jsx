@@ -16,7 +16,7 @@ class Login extends Component {
       authenticateUser({ email: email, password: password });
     };
 
-    if (localStorage.getItem('token') != null) {
+    if (this.props.currentUser != null) {
       return <Redirect to="/" />;
     }
 
@@ -56,12 +56,9 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { login } = state;
-  return {
-    login
-  };
-};
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
 
 const mapDispatchToProps = dispatch => {
   return {

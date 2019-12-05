@@ -6,7 +6,7 @@ import Flash from './Flash';
 
 class Profile extends Component {
   constructor(props) {
-    let currentUser = JSON.parse(localStorage.getItem('current_user'));
+    let currentUser = props.currentUser;
     super(props);
     this.state = {
       email: currentUser.email,
@@ -15,16 +15,25 @@ class Profile extends Component {
       phone: currentUser.phone,
       image: currentUser.image.url,
       role: currentUser.role,
-      id: currentUser.id
+      id: currentUser.id,
+      messageFlash: ''
     };
   }
 
   render() {
-    let { email, username, address, phone, image, role, id } = this.state;
+    let {
+      email,
+      username,
+      address,
+      phone,
+      image,
+      role,
+      id,
+      messageFlash
+    } = this.state;
 
     const onUpdateProfile = e => {
       e.preventDefault();
-
       const formData = new FormData();
       const file = document.querySelector('[type=file]').files[0];
       if (file) formData.append('user[image]', file);
@@ -35,8 +44,8 @@ class Profile extends Component {
       );
       formData.append('user[phone]', document.getElementById('phone').value);
       formData.append('user[role]', document.getElementById('role').value);
-
       this.props.updateProfile({ formData: formData, id: id });
+      this.setState({ messageFlash: 'Update successfully' });
     };
 
     const previewImage = e => {
@@ -52,14 +61,9 @@ class Profile extends Component {
       }
     };
 
-    const flashMessage = () =>
-      this.props.status === 'ok' ? (
-        <Flash type="success" message="Update successfully" />
-      ) : null;
-
     return (
       <form onSubmit={onUpdateProfile}>
-        {flashMessage()}
+        <Flash type="success" message={messageFlash} />
         <h1>Profile</h1>
         <div className="form-group row">
           <label htmlFor="email" className="col-sm-2 col-form-label">
@@ -161,7 +165,10 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = state => ({ status: state.update_profile.status });
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+  status: 'ok'
+});
 
 const mapDispatchToProps = dispatch => ({
   updateProfile: data => {

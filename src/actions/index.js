@@ -34,3 +34,9 @@ export const updateProfile = data => {
     data
   };
 };
+
+export const logOut = () => {
+  return {
+    type: types.LOG_OUT
+  };
+};

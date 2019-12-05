@@ -14,7 +14,7 @@ function* workerSaga(action) {
     const response = yield call(callUpdateProfile, data);
     const result = response.data;
     // dispatch a success action to the store with the new dog
-    yield put({ type: types.UPDATE_PROFILE_SUCCESS, result });
+    yield put({ type: types.UPDATE_PROFILE_SUCCESS, data: result });
   } catch (error) {
     // dispatch a failure action to the store with the error
     yield put({ type: types.UPDATE_PROFILE_FAILURE, error });

@@ -1,13 +1,10 @@
 import { combineReducers } from 'redux';
-import login from './login';
 import adminCategories from './admin_categories';
-import update_profile from './update_profile';
-
+import user from './user';
 
 const reducer = combineReducers({
-  login,
   adminCategories,
-  update_profile
+  user
 });
 
 export default reducer;
