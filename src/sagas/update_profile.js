@@ -1,6 +1,6 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import * as types from './../constants/ActionTypes';
-import axios from 'axios';
+import callApi from './call_api';
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* updateProfileSaga() {
@@ -24,13 +24,5 @@ function* workerSaga(action) {
 // function that makes the api request and returns a Promise for response
 function callUpdateProfile(data) {
   const { formData, id } = data;
-  return axios({
-    method: 'PATCH',
-    url: `http://localhost:3000/api/users/${id}`,
-    data: formData,
-    headers: { token: localStorage.getItem('token') },
-    dataType: 'json',
-    contentType: false,
-    processData: false
-  });
+  return callApi('PUT', `users/${id}`, formData);
 }
