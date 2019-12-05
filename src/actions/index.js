@@ -56,3 +56,10 @@ export const fetchProductsByCategory = (categoryId, productType) => ({
   categoryId,
   productType
 });
+
+export const addCategory = data => {
+  return {
+    type: types.ADD_CATEGORY,
+    data
+  };
+};
