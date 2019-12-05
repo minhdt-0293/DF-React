@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import Pagination from './Pagination';
+import { Link } from 'react-router-dom';
 
 class AdminCategories extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class AdminCategories extends Component {
         <tr key={category.id + category.name}>
           <th scope="row">{category.id}</th>
           <td>
-            <img src={category.image} />
+            <img className="w-100" src={category.image.url} alt={category.name} />
           </td>
           <td>{category.name}</td>
           <td>
@@ -65,7 +66,16 @@ class AdminCategories extends Component {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h1 className="my-4 admin-title">Categories</h1>
+            <div className="row align-items-center">
+              <div className="col-12 col-md-8">
+                <h1 className="my-4 admin-title">Categories</h1>
+              </div>
+              <div className="col-12 col-md-4 text-right">
+                <Link className="btn btn-primary" to="/admin/categories/add">
+                  Add Category
+                </Link>
+              </div>
+            </div>
             <table className="table">
               <thead>
                 <tr>
@@ -83,7 +93,11 @@ class AdminCategories extends Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <Pagination currentPage={currentPage} arrPages={arrPages} handleClickPaginate={handleClickPaginate} />
+            <Pagination
+              currentPage={currentPage}
+              arrPages={arrPages}
+              handleClickPaginate={handleClickPaginate}
+            />
           </div>
         </div>
       </div>

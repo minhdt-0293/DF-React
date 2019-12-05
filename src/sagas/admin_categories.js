@@ -52,5 +52,7 @@ function* workerSagaDeleteCategories(action) {
 }
 
 function deleteCategories(data) {
-  return callApi('DELETE', 'categories/' + data.categoryId, {page: data.page});
+  return callApi('DELETE', 'categories/' + data.categoryId, {
+    page: data.page
+  });
 }

@@ -4,6 +4,7 @@ import NotFound from '../components/NotFound';
 import AdminCategories from '../components/Admin/Categories';
 import AdminUsers from '../components/Admin/Users';
 import Profile from '../components/Profile';
+import AdminAddCategory from '../components/AdminAddCategory';
 import App from './../App';
 import Admin from '../components/Admin/Admin';
 
@@ -39,6 +40,12 @@ const routes = [
         path: '/admin',
         component: Admin,
         routes: routerAdmin
+      },
+      {
+        path: '/admin/categories/add',
+        name: 'AdminAddCategory',
+        component: AdminAddCategory,
+        exact: true
       },
       {
         path: '/profile',

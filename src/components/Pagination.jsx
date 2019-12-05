@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
-const Pagination = ({currentPage, arrPages, handleClickPaginate}) => {
-  const ListPages = () => (
+const Pagination = ({ currentPage, arrPages, handleClickPaginate }) => {
+  const ListPages = () =>
     arrPages.map(page => (
       <li
         key={page}
@@ -16,8 +16,7 @@ const Pagination = ({currentPage, arrPages, handleClickPaginate}) => {
           {page}
         </span>
       </li>
-    ))
-  );
+    ));
 
   return (
     <Fragment>
@@ -27,7 +26,7 @@ const Pagination = ({currentPage, arrPages, handleClickPaginate}) => {
         </ul>
       </nav>
     </Fragment>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;

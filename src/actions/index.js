@@ -44,3 +44,10 @@ export const logOut = () => {
 export const fetchAdminInfo = () => ({
   type: types.FETCH_ADMIN_INFO
 });
+
+export const addCategory = data => {
+  return {
+    type: types.ADD_CATEGORY,
+    data
+  };
+};
