@@ -8,8 +8,8 @@ const callApi = (method, subUrl, params) => {
     method: method,
     url: API_BASE_URL + subUrl,
     headers: { token: USER_TOKEN },
-    params: params
+    data: params
   });
-}
+};
 
 export default callApi;
