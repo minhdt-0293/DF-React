@@ -40,3 +40,7 @@ export const logOut = () => {
     type: types.LOG_OUT
   };
 };
+
+export const fetchAdminInfo = () => ({
+  type: types.FETCH_ADMIN_INFO
+});

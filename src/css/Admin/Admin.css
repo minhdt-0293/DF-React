@@ -1,0 +1,26 @@
+.Admin-dashboard {
+  display: flex;
+  justify-content: center;
+}
+
+.Admin-dashboard a:hover {
+  text-decoration: none;
+}
+
+.Admin-card {
+  width: 300px;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.Admin-card:hover {
+  opacity: 0.6;
+}
+
+.Admin-link {
+  color: white
+}
+
+.Admin-selected {
+  opacity: 0.6;
+}
