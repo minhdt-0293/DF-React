@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Route, Link } from 'react-router-dom';
+import React from 'react';
+import { Route, Link, NavLink } from 'react-router-dom';
 import './../css/Menu.css';
 import { connect } from 'react-redux';
 import * as actions from './../actions/index';
@@ -7,26 +7,22 @@ import * as actions from './../actions/index';
 const menus = [
   { name: 'Home', to: '/' },
   { name: 'Products', to: '/products' },
-  { name: 'Categories', to: '/admin/categories' },
-  { name: 'Products', to: '/products' }
+  { name: 'Categories', to: '/categories' }
 ];
 
 const MenuLink = ({ label, to, event }) => {
   return (
-    <Route
-      path={to}
-      exact
-      children={({ match }) => {
-        let active = match ? 'nav-item active' : 'nav-item';
-        return (
-          <li className={active}>
-            <Link to={to} className="nav-link" onClick={event}>
-              {label}
-            </Link>
-          </li>
-        );
-      }}
-    />
+    <li>
+      <NavLink
+        exact
+        to={to}
+        className="nav-link"
+        onClick={event}
+        activeClassName="active"
+      >
+        {label}
+      </NavLink>
+    </li>
   );
 };
 
@@ -69,9 +65,9 @@ const rightMenu = props => {
             <Link to="/profile" className="dropdown-item">
               Profile
             </Link>
-            <a className="dropdown-item" href="#">
+            <Link to="/admin" className="dropdown-item">
               Settings
-            </a>
+            </Link>
             <Link
               to="/login"
               onClick={() => props.logout()}
@@ -97,11 +93,23 @@ const rightMenu = props => {
   }
 };
 
+const showAdmin = role =>
+  role === 1 ? (
+    <li>
+      <NavLink to="/admin" className="nav-link" activeClassName="active">
+        Admin
+      </NavLink>
+    </li>
+  ) : null;
+
 const Menu = props => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">{showMenu(menus)}</ul>
+        <ul className="navbar-nav">
+          {showMenu(menus)}
+          {showAdmin(props.currentUser.role)}
+        </ul>
         <ul className="navbar-nav ml-auto">{rightMenu(props)}</ul>
       </div>
     </nav>

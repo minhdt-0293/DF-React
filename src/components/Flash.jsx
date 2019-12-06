@@ -9,7 +9,9 @@ const Flash = props => {
     if (elm[0] != undefined) {
       elm[0].style.display = 'block';
       setTimeout(function() {
-        elm[0].style.display = 'none';
+        if (elm[0] != undefined) {
+          elm[0].style.display = 'none';
+        }
       }, 3000);
     }
   });

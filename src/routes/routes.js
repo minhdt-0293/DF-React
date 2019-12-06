@@ -1,9 +1,24 @@
 import Home from '../components/Home';
 import Login from '../components/Login';
 import NotFound from '../components/NotFound';
-import AdminCategories from '../components/AdminCategories';
+import AdminCategories from '../components/Admin/Categories';
+import AdminUsers from '../components/Admin/Users';
 import Profile from '../components/Profile';
 import App from './../App';
+import Admin from '../components/Admin/Admin';
+
+const routerAdmin = [
+  {
+    path: '/admin/categories',
+    component: AdminCategories,
+    exact: true
+  },
+  {
+    path: '/admin/users',
+    component: AdminUsers,
+    exact: true
+  }
+];
 
 const routes = [
   {
@@ -21,16 +36,9 @@ const routes = [
         component: Login
       },
       {
-        path: '/admin/categories',
-        exact: true,
-        component: AdminCategories,
-        routes: [
-          {
-            path: '/admin/categories/aaaa',
-            component: Home,
-            exact: true
-          }
-        ]
+        path: '/admin',
+        component: Admin,
+        routes: routerAdmin
       },
       {
         path: '/profile',
