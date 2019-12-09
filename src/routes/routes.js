@@ -4,9 +4,10 @@ import NotFound from '../components/NotFound';
 import AdminCategories from '../components/Admin/Categories';
 import AdminUsers from '../components/Admin/Users';
 import Profile from '../components/Profile';
-import AdminAddCategory from '../components/AdminAddCategory';
+import AdminAddCategory from '../components/Admin/AddCategory';
 import App from './../App';
 import Admin from '../components/Admin/Admin';
+import AdminEditCategory from '../components/Admin/EditCategory';
 
 const routerAdmin = [
   {
@@ -18,6 +19,17 @@ const routerAdmin = [
     path: '/admin/users',
     component: AdminUsers,
     exact: true
+  },
+  {
+    path: '/admin/categories/add',
+    name: 'AdminAddCategory',
+    component: AdminAddCategory,
+    exact: true
+  },
+  {
+    path: '/admin/categories/edit/:id',
+    exact: true,
+    component: AdminEditCategory
   }
 ];
 
@@ -40,12 +52,6 @@ const routes = [
         path: '/admin',
         component: Admin,
         routes: routerAdmin
-      },
-      {
-        path: '/admin/categories/add',
-        name: 'AdminAddCategory',
-        component: AdminAddCategory,
-        exact: true
       },
       {
         path: '/profile',

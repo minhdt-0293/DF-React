@@ -32,10 +32,11 @@ class Categories extends Component {
         <tr key={category.id + category.name}>
           <th scope="row">{category.id}</th>
           <td>
-            <img className="w-100" src={category.image.url} alt={category.name} />
+            <img className="w-100" src={category.image} alt={category.name} />
           </td>
           <td>{category.name}</td>
           <td>
+            <Link to={`/admin/categories/edit/${category.id}`}>Edit</Link>
             <span
               className="text-danger mx-1 cursor-pointer"
               onClick={event =>
@@ -63,12 +64,7 @@ class Categories extends Component {
     };
 
     return (
-      <div
-        className="tab-pane fade show active"
-        id="nav-home"
-        role="tabpanel"
-        aria-labelledby="nav-home-tab"
-      >
+      <div className="container">
         <div className="row">
           <div className="col-12">
             <div className="row align-items-center">

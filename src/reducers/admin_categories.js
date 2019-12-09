@@ -10,9 +10,9 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.FECTH_CATEGORIES:
+    case types.FETCH_CATEGORIES:
       return { ...state, fetching: true, error: null };
-    case types.FECTH_CATEGORIES_SUCCESS:
+    case types.FETCH_CATEGORIES_SUCCESS:
       return {
         ...state,
         fetching: false,
@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
         categories: action.data.categories,
         total_pages: action.data.total_pages
       };
-    case types.FECTH_CATEGORIES_FAILURE:
+    case types.FETCH_CATEGORIES_FAILURE:
       return { ...state, fetching: false, error: action.error };
     case types.DELETE_CATEGORY:
       return { ...state, fetching: true, error: null };

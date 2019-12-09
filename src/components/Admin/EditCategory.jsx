@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from './../actions';
-import './../css/Profile.css';
-import Flash from './Flash';
+import * as actions from '../../actions';
+import '../../css/Profile.css';
+import Flash from '../Flash';
+import { withRouter } from 'react-router-dom';
 
-class AdminAddCategory extends Component {
+class AdminEditCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       name: '',
-      parent_id: 0,
       image: '',
       description: ''
     };
   }
 
-  render() {
-    let { name, parent_id, image, description } = this.state;
+  componentDidMount() {
+    let categoryId = this.props.match.params.id;
+    this.props.fetchCategory(categoryId);
+  }
 
-    const onAddCategory = e => {
+  render() {
+
+    let { id, name, image, description } = this.props.category;
+
+    const onUpdateCategory = e => {
       e.preventDefault();
 
       const formData = new FormData();
       const file = document.querySelector('[type=file]').files[0];
       if (file) formData.append('category[image]', file);
       formData.append(
-        'category[parent_id]', document.getElementById('parent_id').value
+        'category[id]', id
       );
+
       formData.append(
         'category[description]', document.getElementById('description').value
       );
@@ -35,7 +43,7 @@ class AdminAddCategory extends Component {
         'category[name]', document.getElementById('name').value
       );
 
-      this.props.addCategory(formData);
+      this.props.updateCategory(formData, this.props.match.params.id);
     };
 
     const previewImage = e => {
@@ -53,12 +61,12 @@ class AdminAddCategory extends Component {
 
     const flashMessage = () =>
       this.props.status === 'ok' ? (
-        <Flash type="success" message="Add successfully" />
+        <Flash type="success" message="Update successfully" />
       ) : null;
     return (
-      <form onSubmit={onAddCategory}>
+      <form onSubmit={onUpdateCategory}>
         {flashMessage()}
-        <h1>Add Category</h1>
+        <h1>Edit Category</h1>
         <div className="form-group">
           <div className="row">
             <label htmlFor="name" className="col-sm-2 col-form-label">
@@ -71,24 +79,6 @@ class AdminAddCategory extends Component {
                 id="name"
                 defaultValue={name}
               />
-            </div>
-          </div>
-        </div>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="parent_id" className="col-sm-2 col-form-label">
-              Parent
-            </label>
-            <div className="col-sm-10">
-              <select
-                className="form-control"
-                id="parent_id"
-                defaultValue={parent_id}
-              >
-                <option value="0">--- Select Parent ---</option>
-                <option value="1">Parent 1</option>
-                <option value="2">Parent 2</option>
-              </select>
             </div>
           </div>
         </div>
@@ -132,7 +122,7 @@ class AdminAddCategory extends Component {
           <div className="col-sm-2"></div>
           <div className="col-sm-10">
             <button type="submit" className="btn btn-primary">
-              Add Category
+              Update Category
             </button>
           </div>
         </div>
@@ -142,13 +132,17 @@ class AdminAddCategory extends Component {
 }
 
 const mapStateToProps = state => ({
-  status: state.AdminAddCategory.status
+  status: state.AdminUpdateCategory.status,
+  category: state.AdminUpdateCategory.category
 });
 
 const mapDispatchToProps = dispatch => ({
-  addCategory: data => {
-    dispatch(actions.addCategory(data));
+  updateCategory: (data, categoryId) => {
+    dispatch(actions.updateCategory(data, categoryId));
+  },
+  fetchCategory: id => {
+    dispatch(actions.fetchCategory(id))
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminAddCategory);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminEditCategory));

@@ -23,5 +23,5 @@ function* workerSaga(action) {
 
 // function that makes the api request and returns a Promise for response
 function callAdminAddCategory(category) {
-  return callApi('POST', 'categories', category);
+  return callApi('POST', 'admin/categories', category);
 }

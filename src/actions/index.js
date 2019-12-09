@@ -9,7 +9,7 @@ export const logIn = data => {
 
 export const fetchCategories = data => {
   return {
-    type: types.FECTH_CATEGORIES,
+    type: types.FETCH_CATEGORIES,
     data
   };
 };
@@ -63,3 +63,18 @@ export const addCategory = data => {
     data
   };
 };
+
+export const updateCategory = (data,categoryId) => {
+  return {
+    type: types.UPDATE_CATEGORY,
+    data,
+    categoryId
+  };
+};
+
+export const fetchCategory = id => {
+  return {
+    type: types.FETCH_CATEGORY,
+    id
+  }
+}

@@ -6,6 +6,7 @@ import { adminInfoSaga } from './admin_info';
 import { categoriesSaga } from './categories';
 import { productsSaga } from './products';
 import { adminAddCategory} from './admin_add_category';
+import { adminUpdateCategory } from './admin_update_category';
 
 export default function* rootSaga() {
   yield all([
@@ -15,6 +16,7 @@ export default function* rootSaga() {
     adminInfoSaga(),
     categoriesSaga(),
     productsSaga(),
-    adminAddCategory()
+    adminAddCategory(),
+    adminUpdateCategory()
   ]);
 }
