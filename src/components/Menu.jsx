@@ -3,14 +3,13 @@ import {
   Link,
   NavLink
 } from 'react-router-dom';
-import './../css/Menu.css';
 import { connect } from 'react-redux';
 import * as actions from './../actions/index';
 
 const menus = [
   { name: 'Home', to: '/' },
   { name: 'Products', to: '/products' },
-  { name: 'Categories', to: '/admin/categories' }
+  { name: 'Categories', to: '/categories' }
 ];
 
 const showMenu = menus => {
@@ -33,7 +32,7 @@ const rightMenu = props => {
     return (
       <>
         <li className="nav-item"></li>
-        <li className="nav-item dropleft">
+        <li className="nav-item dropdown">
           <span
             className="nav-link dropdown-toggle cursor-pointer"
             href="#"
@@ -47,6 +46,7 @@ const rightMenu = props => {
               className="rounded-circle z-depth-0 avatar"
               alt="avatar"
             />
+            <Link to="#" className="mx-1 text-white text-decoration-none">{currentUser.username}</Link>
           </span>
 
           <div
@@ -69,7 +69,6 @@ const rightMenu = props => {
             </Link>
           </div>
         </li>
-        <li className="mgt-15 Menu-username">{currentUser.username}</li>
       </>
     );
   } else {
@@ -99,7 +98,7 @@ const Menu = props => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           {showMenu(menus)}
-          {showAdmin(props.currentUser.role)}
+          {props.currentUser !== null ? showAdmin(props.currentUser.role) : <></>}
         </ul>
         <ul className="navbar-nav ml-auto">{rightMenu(props)}</ul>
       </div>
