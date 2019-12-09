@@ -132,8 +132,8 @@ class AdminEditCategory extends Component {
 }
 
 const mapStateToProps = state => ({
-  status: state.AdminUpdateCategory.status,
-  category: state.AdminUpdateCategory.category
+  status: state.adminUpdateCategory.status,
+  category: state.adminUpdateCategory.category
 });
 
 const mapDispatchToProps = dispatch => ({

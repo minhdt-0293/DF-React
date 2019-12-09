@@ -120,7 +120,7 @@ class AdminAddCategory extends Component {
 }
 
 const mapStateToProps = state => ({
-  status: state.AdminAddCategory.status
+  status: state.adminAddCategory.status
 });
 
 const mapDispatchToProps = dispatch => ({
