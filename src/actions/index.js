@@ -66,3 +66,17 @@ export const fetchCategory = id => {
     id
   }
 }
+
+export const fetchProducts = data => {
+  return {
+    type: types.FETCH_PRODUCTS,
+    data
+  };
+};
+
+export const deleteProduct = data => {
+  return {
+    type: types.DELETE_PRODUCT,
+    data
+  };
+};

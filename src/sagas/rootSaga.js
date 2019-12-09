@@ -4,7 +4,8 @@ import { all } from 'redux-saga/effects';
 import { updateProfileSaga } from './update_profile';
 import { adminAddCategory} from './admin_add_category';
 import { adminUpdateCategory } from './admin_update_category';
+import { adminProductsSaga } from './admin_products';
 
 export default function* rootSaga() {
-  yield all([loginSaga(), adminCategoriesSaga(), updateProfileSaga(), adminAddCategory(), adminUpdateCategory()]);
+  yield all([loginSaga(), adminCategoriesSaga(), updateProfileSaga(), adminAddCategory(), adminUpdateCategory(), adminProductsSaga()]);
 }

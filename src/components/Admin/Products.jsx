@@ -4,7 +4,7 @@ import * as actions from '../../actions/index';
 import Pagination from '../Pagination';
 import { Link } from 'react-router-dom';
 
-class Categories extends Component {
+class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,12 +14,12 @@ class Categories extends Component {
   }
 
   componentDidMount() {
-    const { fetchCategories } = this.props;
-    fetchCategories();
+    const { fetchProducts } = this.props;
+    fetchProducts();
   }
 
   render() {
-    const { currentPage, categories, totalPage } = this.props;
+    const { currentPage, products, totalPage } = this.props;
 
     let arrPages = [];
 
@@ -27,20 +27,20 @@ class Categories extends Component {
       arrPages.push(page);
     }
 
-    const RowCategory = () =>
-      categories.map(category => (
-        <tr key={category.id + category.name}>
-          <th scope="row">{category.id}</th>
+    const RowProduct = () =>
+      products.map(product => (
+        <tr key={product.id + product.name}>
+          <th scope="row">{product.id}</th>
           <td>
-            <img className="w-100" src={category.image} alt={category.name} />
+            <img className="w-100" src={product.image} alt={product.name} />
           </td>
-          <td>{category.name}</td>
+          <td>{product.name}</td>
           <td>
-            <Link to={`/admin/categories/edit/${category.id}`}>Edit</Link>
+            <Link to={`/admin/products/edit/${product.id}`}>Edit</Link>
             <span
               className="text-danger mx-1 cursor-pointer"
               onClick={event =>
-                handleClickDelete(event, category.id, category.name)
+                handleClickDelete(event, product.id, product.name)
               }
             >
               Delete
@@ -51,13 +51,13 @@ class Categories extends Component {
 
     const handleClickPaginate = ({ page }) => {
       this.props.setCurrentPage(page);
-      this.props.fetchCategories({ page });
+      this.props.fetchProducts({ page });
     };
 
-    const handleClickDelete = (event, categoryId, categoryName) => {
-      if (window.confirm('Confirm delete category "' + categoryName + '" ?')) {
+    const handleClickDelete = (event, productId, productName) => {
+      if (window.confirm('Confirm delete product "' + productName + '" ?')) {
         event.preventDefault();
-        this.props.deleteCategory(categoryId, currentPage);
+        this.props.deleteProduct(productId, currentPage);
       }
     };
 
@@ -67,11 +67,11 @@ class Categories extends Component {
           <div className="col-12">
             <div className="row align-items-center">
               <div className="col-12 col-md-8">
-                <h1 className="my-4 admin-title">Categories</h1>
+                <h1 className="my-4 admin-title">Products</h1>
               </div>
               <div className="col-12 col-md-4 text-right">
-                <Link className="btn btn-primary" to="/admin/categories/add">
-                  Add Category
+                <Link className="btn btn-primary" to="/admin/products/add">
+                  Add Product
                 </Link>
               </div>
             </div>
@@ -85,7 +85,7 @@ class Categories extends Component {
                 </tr>
               </thead>
               <tbody>
-                <RowCategory />
+                <RowProduct />
               </tbody>
             </table>
           </div>
@@ -105,24 +105,24 @@ class Categories extends Component {
 }
 
 const mapStateToProps = state => {
-  const adminState = state.adminCategories;
+  const adminState = state.adminProducts;
   return {
     currentPage: adminState.currentPage,
-    categories: adminState.categories,
+    products: adminState.products,
     totalPage: adminState.total_pages
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: page => {
-      dispatch(actions.fetchCategories(page));
+    fetchProducts: page => {
+      dispatch(actions.fetchProducts(page));
     },
-    deleteCategory: (categoryId, page) => {
-      dispatch(actions.deleteCategory({ categoryId: categoryId, page: page }));
+    deleteProduct: (productId, page) => {
+      dispatch(actions.deleteProduct({ productId: productId, page: page }));
     },
     setCurrentPage: page => dispatch(actions.setCurrentPage(page))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

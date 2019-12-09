@@ -8,6 +8,7 @@ import AdminAddCategory from '../components/Admin/AddCategory';
 import App from './../App';
 import Admin from '../components/Admin/Admin';
 import AdminEditCategory from '../components/Admin/EditCategory';
+import AdminProducts from '../components/Admin/Products';
 
 const routerAdmin = [
   {
@@ -30,7 +31,12 @@ const routerAdmin = [
     path: '/admin/categories/edit/:id',
     exact: true,
     component: AdminEditCategory
-  }
+  },
+  {
+    path: '/admin/products',
+    component: AdminProducts,
+    exact: true
+  },
 ];
 
 const routes = [
