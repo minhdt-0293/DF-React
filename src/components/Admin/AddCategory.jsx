@@ -5,14 +5,6 @@ import '../../css/Profile.css';
 import Flash from '../Flash';
 
 class AdminAddCategory extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      image: '',
-      description: ''
-    };
-  }
 
   render() {
     let { name, image, description } = this.state;

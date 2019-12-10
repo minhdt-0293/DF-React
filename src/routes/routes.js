@@ -11,6 +11,8 @@ import AdminEditCategory from '../components/Admin/EditCategory';
 import AdminProducts from '../components/Admin/Products';
 import AdminEditProduct from '../components/Admin/EditProduct';
 import AdminAddProduct from '../components/Admin/AddProduct';
+import AdminOrders from '../components/Admin/Orders';
+import AdminEditOrder from '../components/Admin/EditOrder';
 
 const routerAdmin = [
   {
@@ -47,6 +49,16 @@ const routerAdmin = [
     path: '/admin/products/add',
     component: AdminAddProduct,
     exact: true
+  },
+  {
+    path: '/admin/orders',
+    component: AdminOrders,
+    exact: true
+  },
+  {
+    path: '/admin/orders/edit/:id',
+    exact: true,
+    component: AdminEditOrder
   }
 ];
 

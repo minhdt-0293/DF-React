@@ -8,6 +8,7 @@ import TitleCategories from './TitleCategories';
 const Products = props => {
   useEffect(() => {
     props.fetchCategories();
+    // eslint-disable-next-line
   }, []);
 
   return (

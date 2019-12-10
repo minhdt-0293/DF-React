@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 const showProduct = drinkProducts => {
@@ -10,7 +10,7 @@ const showProduct = drinkProducts => {
           className="col-lg-3 col-md-4 col-6 thumbnail Home-product"
           key={index}
         >
-          <a href="#" className="mb-4 h-100">
+          <a href="javacript:void(0)" className="mb-4 h-100">
             <img className="img-fluid" src={product.image.url} alt="" />
           </a>
           <div className="Home-detail-product">

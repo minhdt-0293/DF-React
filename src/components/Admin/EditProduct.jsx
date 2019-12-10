@@ -5,25 +5,15 @@ import Flash from '../Flash';
 import { withRouter } from 'react-router-dom';
 
 class AdminEditProduct extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: 0,
-      category_id: 0,
-      name: '',
-      price: 0,
-      quantity: 0,
-      avg_rating: 0,
-      type: 0,
-      image: '',
-      description: ''
-    };
-  }
 
   componentDidMount() {
     let productId = this.props.match.params.id;
     this.props.fetchProduct(productId);
     this.props.fetchAllCategories();
+  }
+
+  componentWillUnmount() {
+    this.props.clearOldProduct();
   }
 
   render() {
@@ -90,149 +80,155 @@ class AdminEditProduct extends Component {
         ));
       }
     }
-    return (
-      <form onSubmit={onUpdateProduct}>
-        {flashMessage()}
-        <h1>Edit Product</h1>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="category_id" className="col-sm-2 col-form-label">
-              Categories
-            </label>
-            <div className="col-sm-10">
-              <select id="category_id" className="form-control" defaultValue={category_id}>
-                {listCategories(allCategories)}
-              </select>
+
+    if (this.props.statusFetch === 'ok') {
+      return (
+        <form onSubmit={onUpdateProduct}>
+          {flashMessage()}
+          <h1>Edit Product</h1>
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="category_id" className="col-sm-2 col-form-label">
+                Categories
+              </label>
+              <div className="col-sm-10">
+                <select id="category_id" className="form-control" defaultValue={category_id}>
+                  {listCategories(allCategories)}
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
-              Name
-            </label>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                defaultValue={name}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="price" className="col-sm-2 col-form-label">
-              Price
-            </label>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                className="form-control"
-                id="price"
-                defaultValue={price}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="quantity" className="col-sm-2 col-form-label">
-              Quantity
-            </label>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                className="form-control"
-                id="quantity"
-                defaultValue={quantity}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="avg_rating" className="col-sm-2 col-form-label">
-              Avg rating
-            </label>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                readOnly
-                className="form-control"
-                id="avg_rating"
-                defaultValue={avg_rating}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="product_type" className="col-sm-2 col-form-label">
-              Product type
-            </label>
-            <div className="col-sm-10">
-              <select id="product_type" className="form-control" defaultValue={product_type}>
-                <option value="1">Drink</option>
-                <option value="2">Food</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="image" className="col-sm-2 col-form-label">
-              Image
-            </label>
-            <div className="col-sm-10 Profile-upload-image">
-              <div className="Profile-browser col-sm-10">
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="name" className="col-sm-2 col-form-label">
+                Name
+              </label>
+              <div className="col-sm-10">
                 <input
-                  type="file"
-                  className="custom-file-input"
-                  id="image"
-                  onChange={previewImage}
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  defaultValue={name}
                 />
-                <label className="custom-file-label" htmlFor="image">
-                  Choose file
-                </label>
-              </div>
-              <div className="Profile-image col-sm-2">
-                <img src={image} alt={name} />
               </div>
             </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="description" className="col-sm-2 col-form-label">
-            Description
-          </label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="description"
-              defaultValue={description}
-            />
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="price" className="col-sm-2 col-form-label">
+                Price
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="price"
+                  defaultValue={price}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <div className="col-sm-2"></div>
-          <div className="col-sm-10">
-            <button type="submit" className="btn btn-primary">
-              Update Category
-            </button>
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="quantity" className="col-sm-2 col-form-label">
+                Quantity
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="quantity"
+                  defaultValue={quantity}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </form>
-    );
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="avg_rating" className="col-sm-2 col-form-label">
+                Avg rating
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  readOnly
+                  className="form-control"
+                  id="avg_rating"
+                  defaultValue={avg_rating}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="product_type" className="col-sm-2 col-form-label">
+                Product type
+              </label>
+              <div className="col-sm-10">
+                <select id="product_type" className="form-control" defaultValue={product_type}>
+                  <option value="1">Drink</option>
+                  <option value="2">Food</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="image" className="col-sm-2 col-form-label">
+                Image
+              </label>
+              <div className="col-sm-10 Profile-upload-image">
+                <div className="Profile-browser col-sm-10">
+                  <input
+                    type="file"
+                    className="custom-file-input"
+                    id="image"
+                    onChange={previewImage}
+                  />
+                  <label className="custom-file-label" htmlFor="image">
+                    Choose file
+                  </label>
+                </div>
+                <div className="Profile-image col-sm-2">
+                  <img src={image.url} alt={name} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="form-group row">
+            <label htmlFor="description" className="col-sm-2 col-form-label">
+              Description
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                defaultValue={description}
+              />
+            </div>
+          </div>
+          <div className="form-group row">
+            <div className="col-sm-2"></div>
+            <div className="col-sm-10">
+              <button type="submit" className="btn btn-primary">
+                Update Category
+              </button>
+            </div>
+          </div>
+        </form>
+      );
+    } else {
+      return <></>;
+    }
   }
 }
 
 const mapStateToProps = state => ({
   status: state.adminUpdateProduct.status,
   product: state.adminUpdateProduct.product,
-  allCategories: state.adminCategories.allCategories
+  allCategories: state.adminCategories.allCategories,
+  statusFetch: state.adminUpdateProduct.statusFetch
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -240,10 +236,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.updateProduct(data, productId));
   },
   fetchProduct: id => {
-    dispatch(actions.fetchProduct(id))
+    dispatch(actions.fetchProduct(id));
   },
   fetchAllCategories: () => {
-    dispatch(actions.fetchAllCategories())
+    dispatch(actions.fetchAllCategories());
+  },
+  clearOldProduct: () => {
+    dispatch(actions.clearOldProduct());
   }
 });
 

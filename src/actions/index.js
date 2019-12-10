@@ -121,3 +121,50 @@ export const fetchAllCategories = (data) => {
     data
   }
 }
+
+export const changeStatusOrder = (id, data) => {
+  return {
+    type: types.CHANGE_STATUS_ORDER,
+    data
+  }
+}
+
+export const fetchOrders = (data) => {
+  return {
+    type: types.FETCH_ORDERS,
+    data
+  }
+}
+
+export const updateOrder = (data, orderId) => {
+  return {
+    type: types.UPDATE_ORDER,
+    data,
+    orderId
+  };
+};
+
+export const fetchOrder = id => {
+  return {
+    type: types.FETCH_ORDER,
+    id
+  }
+}
+
+export const clearOldOrder = () => {
+  return {
+    type: types.CLEAR_OLD_ORDER
+  }
+}
+
+export const clearOldCategory = () => {
+  return {
+    type: types.CLEAR_OLD_CATEGORY
+  }
+}
+
+export const clearOldProduct = () => {
+  return {
+    type: types.CLEAR_OLD_PRODUCT
+  }
+}

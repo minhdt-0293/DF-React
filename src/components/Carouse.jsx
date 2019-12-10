@@ -23,12 +23,14 @@ const Carouse = () => (
         <img
           src="https://demo.codezeel.com/opencart/OPC07/OPC070162/image/cache/catalog/main-banner-1-1903x850.jpg"
           className="d-block"
+          alt=""
         />
       </div>
       <div className="carousel-item">
         <img
           src="https://demo.codezeel.com/opencart/OPC07/OPC070162/image/cache/catalog/main-banner-2-1903x850.jpg"
           className="d-block"
+          alt=""
         />
       </div>
     </div>

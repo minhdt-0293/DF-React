@@ -8,8 +8,7 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalPage: 1,
-      showModal: false
+      totalPage: 1
     };
   }
 
@@ -32,18 +31,20 @@ class Products extends Component {
         <tr key={product.id + product.name}>
           <th scope="row">{product.id}</th>
           <td>
-            <img className="w-100" src={product.image} alt={product.name} />
+            <img className="w-100" src={product.image.url} alt={product.name} />
           </td>
           <td>{product.name}</td>
-          <td>
-            <Link to={`/admin/products/edit/${product.id}`}>Edit</Link>
+          <td className="text-center">
+            <Link to={`/admin/products/edit/${product.id}`} className="my-2 btn btn-info">
+              <i className="fa fa-pencil"></i>
+            </Link>
             <span
-              className="text-danger mx-1 cursor-pointer"
+              className="mx-1 btn btn-danger"
               onClick={event =>
                 handleClickDelete(event, product.id, product.name)
               }
             >
-              Delete
+              <i className="fa fa-remove"></i>
             </span>
           </td>
         </tr>
@@ -81,7 +82,7 @@ class Products extends Component {
                   <th scope="col">#</th>
                   <th scope="col">Image</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Action</th>
+                  <th scope="col" className="text-center">Action</th>
                 </tr>
               </thead>
               <tbody>

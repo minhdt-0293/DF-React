@@ -17,7 +17,7 @@ function* workerUpdateSaga(action) {
     yield put({ type: types.UPDATE_CATEGORY_SUCCESS, result });
   } catch (error) {
     // dispatch a failure action to the store with the error
-    yield put({ type: types.UPDATE_PROFILE_FAILURE, error });
+    yield put({ type: types.UPDATE_CATEGORY_FAILURE, error });
   }
 }
 

@@ -6,19 +6,14 @@ import Flash from '../Flash';
 import { withRouter } from 'react-router-dom';
 
 class AdminEditCategory extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: 0,
-      name: '',
-      image: '',
-      description: ''
-    };
-  }
 
   componentDidMount() {
     let categoryId = this.props.match.params.id;
     this.props.fetchCategory(categoryId);
+  }
+
+  componentWillUnmount() {
+    this.props.clearOldCategory();
   }
 
   render() {
@@ -59,81 +54,88 @@ class AdminEditCategory extends Component {
       }
     };
 
-    const flashMessage = () =>
+    const flashMessage = () => (
       this.props.status === 'ok' ? (
         <Flash type="success" message="Update successfully" />
-      ) : null;
-    return (
-      <form onSubmit={onUpdateCategory}>
-        {flashMessage()}
-        <h1>Edit Category</h1>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
-              Name
+      ) : null
+    );
+
+    if (this.props.statusFetch === 'ok'){
+      return (
+        <form onSubmit={onUpdateCategory}>
+          {flashMessage()}
+          <h1>Edit Category</h1>
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="name" className="col-sm-2 col-form-label">
+                Name
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  defaultValue={name}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="row">
+              <label htmlFor="image" className="col-sm-2 col-form-label">
+                Image
+              </label>
+              <div className="col-sm-10 Profile-upload-image">
+                <div className="Profile-browser col-sm-10">
+                  <input
+                    type="file"
+                    className="custom-file-input"
+                    id="image"
+                    onChange={previewImage}
+                  />
+                  <label className="custom-file-label" htmlFor="image">
+                    Choose file
+                  </label>
+                </div>
+                <div className="Profile-image col-sm-2">
+                  <img src={image} alt={name} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="form-group row">
+            <label htmlFor="description" className="col-sm-2 col-form-label">
+              Description
             </label>
             <div className="col-sm-10">
               <input
                 type="text"
                 className="form-control"
-                id="name"
-                defaultValue={name}
+                id="description"
+                defaultValue={description}
               />
             </div>
           </div>
-        </div>
-        <div className="form-group">
-          <div className="row">
-            <label htmlFor="image" className="col-sm-2 col-form-label">
-              Image
-            </label>
-            <div className="col-sm-10 Profile-upload-image">
-              <div className="Profile-browser col-sm-10">
-                <input
-                  type="file"
-                  className="custom-file-input"
-                  id="image"
-                  onChange={previewImage}
-                />
-                <label className="custom-file-label" htmlFor="image">
-                  Choose file
-                </label>
-              </div>
-              <div className="Profile-image col-sm-2">
-                <img src={image} alt={name} />
-              </div>
+          <div className="form-group row">
+            <div className="col-sm-2"></div>
+            <div className="col-sm-10">
+              <button type="submit" className="btn btn-primary">
+                Update Category
+              </button>
             </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="description" className="col-sm-2 col-form-label">
-            Description
-          </label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="description"
-              defaultValue={description}
-            />
-          </div>
-        </div>
-        <div className="form-group row">
-          <div className="col-sm-2"></div>
-          <div className="col-sm-10">
-            <button type="submit" className="btn btn-primary">
-              Update Category
-            </button>
-          </div>
-        </div>
-      </form>
-    );
+        </form>
+      );
+    } else {
+      return <></>;
+    }
   }
 }
 
 const mapStateToProps = state => ({
   status: state.adminUpdateCategory.status,
-  category: state.adminUpdateCategory.category
+  category: state.adminUpdateCategory.category,
+  statusFetch: state.adminUpdateCategory.statusFetch
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -141,7 +143,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.updateCategory(data, categoryId));
   },
   fetchCategory: id => {
-    dispatch(actions.fetchCategory(id))
+    dispatch(actions.fetchCategory(id));
+  },
+  clearOldCategory: () => {
+    dispatch(actions.clearOldCategory());
   }
 });
 

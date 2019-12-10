@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
-import Categories from './Admin/Categories';
 
 const TitleCategory = props => {
   const [activeDrink, setActive] = useState(0);
@@ -13,15 +12,14 @@ const TitleCategory = props => {
       let active = activeDrink === index ? 'nav-link active' : 'nav-link';
       return (
         <li className="nav-item" key={index}>
-          <a
+          <span
             className={active}
-            href="#"
             onClick={e =>
               fetchProductsByCategory(e, props, setActive, category.id, index)
             }
           >
             {category.name}
-          </a>
+          </span>
         </li>
       );
     });

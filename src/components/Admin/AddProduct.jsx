@@ -4,18 +4,6 @@ import * as actions from '../../actions';
 import Flash from '../Flash';
 
 class AdminAddProduct extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      price: '',
-      quantity: '',
-      avg_rating: '',
-      product_type: '',
-      image: '',
-      description: ''
-    };
-  }
 
   componentDidMount() {
     this.props.fetchAllCategories();

@@ -9,7 +9,6 @@ class Categories extends Component {
     super(props);
     this.state = {
       totalPage: 1,
-      showModal: false
     };
   }
 
@@ -35,15 +34,17 @@ class Categories extends Component {
             <img className="w-100" src={category.image} alt={category.name} />
           </td>
           <td>{category.name}</td>
-          <td>
-            <Link to={`/admin/categories/edit/${category.id}`}>Edit</Link>
+          <td className="text-center">
+            <Link to={`/admin/categories/edit/${category.id}`} className="btn btn-info">
+              <i className="fa fa-pencil"></i>
+            </Link>
             <span
-              className="text-danger mx-1 cursor-pointer"
+              className="mx-1 btn btn-danger"
               onClick={event =>
                 handleClickDelete(event, category.id, category.name)
               }
             >
-              Delete
+              <i className="fa fa-remove"></i>
             </span>
           </td>
         </tr>
@@ -81,7 +82,7 @@ class Categories extends Component {
                   <th scope="col">#</th>
                   <th scope="col">Image</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Action</th>
+                  <th scope="col" className="text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
