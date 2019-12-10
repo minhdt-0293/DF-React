@@ -1,15 +1,15 @@
-import * as types from './../constants/ActionTypes';
+import * as types from '../constants/ActionTypes';
 
-const initialState = { category: {}, status: '' };
+const initialState = { product: {}, status: '' };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_CATEGORY:
+    case types.ADD_PRODUCT:
       return state;
-    case types.ADD_CATEGORY_SUCCESS:
+    case types.ADD_PRODUCT_SUCCESS:
       return {
         ...state,
-        category: action.result.category,
+        product: action.result.product,
         status: action.result.status
       };
     default:

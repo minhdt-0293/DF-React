@@ -36,6 +36,18 @@ const reducer = (state = initialState, action) => {
       return { ...state, fetching: false, error: action.error };
     case types.SET_CURRENT_PAGE:
       return { ...state, currentPage: action.currentPage };
+    case types.ALL_CATEGORIES:
+        return { ...state, fetching: true, error: null };
+      case types.ALL_CATEGORIES_SUCCESS:
+        return {
+          ...state,
+          fetching: false,
+          error: null,
+          allCategories: action.data.categories,
+          status: action.data.status
+        };
+      case types.ALL_CATEGORIES_FAILURE:
+        return { ...state, fetching: false, error: action.error };
     default:
       return state;
   }

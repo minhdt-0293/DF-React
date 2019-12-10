@@ -6,6 +6,8 @@ import categories from './categories';
 import adminAddCategory from './admin_add_categoy';
 import adminUpdateCategory from './admin_edit_category';
 import adminProducts from './admin_products';
+import adminUpdateProduct from './admin_edit_product';
+import adminAddProduct from './admin_add_product';
 
 const reducer = combineReducers({
   adminCategories,
@@ -14,7 +16,9 @@ const reducer = combineReducers({
   categories,
   adminAddCategory,
   adminUpdateCategory,
-  adminProducts
+  adminProducts,
+  adminUpdateProduct,
+  adminAddProduct
 });
 
 export default reducer;
