@@ -52,7 +52,7 @@ export const addCategory = data => {
   };
 };
 
-export const updateCategory = (data,categoryId) => {
+export const updateCategory = (data, categoryId) => {
   return {
     type: types.UPDATE_CATEGORY,
     data,
@@ -80,3 +80,32 @@ export const deleteProduct = data => {
     data
   };
 };
+
+export const updateProduct = (data, productId) => {
+  return {
+    type: types.UPDATE_PRODUCT,
+    data,
+    productId
+  };
+};
+
+export const fetchProduct = id => {
+  return {
+    type: types.FETCH_PRODUCT,
+    id
+  }
+}
+
+export const addProduct = data => {
+  return {
+    type: types.ADD_PRODUCT,
+    data
+  };
+};
+
+export const fetchAllCategories = (data) => {
+  return {
+    type: types.ALL_CATEGORIES,
+    data
+  }
+}
