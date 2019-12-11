@@ -44,3 +44,15 @@ export const logOut = () => {
 export const fetchAdminInfo = () => ({
   type: types.FETCH_ADMIN_INFO
 });
+
+export const fetchCategoriesNormalUser = () => {
+  return {
+    type: types.FETCH_CATEGORIES_NU
+  };
+};
+
+export const fetchProductsByCategory = (categoryId, productType) => ({
+  type: types.FETCH_PRODUCTS_BY_CATEGORY,
+  categoryId,
+  productType
+});

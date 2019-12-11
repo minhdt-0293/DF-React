@@ -62,7 +62,7 @@ class Profile extends Component {
     };
 
     return (
-      <form onSubmit={onUpdateProfile}>
+      <form onSubmit={onUpdateProfile} className="container">
         <Flash type="success" message={messageFlash} />
         <h1>Profile</h1>
         <div className="form-group row">

@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div>
         <Menu />
-        <div className="container content">{renderRoutes(route.routes)}</div>
+        <div className="content">{renderRoutes(route.routes)}</div>
       </div>
     );
   }

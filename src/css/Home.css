@@ -1,0 +1,121 @@
+.carousel-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+#carouselExampleCaptions:hover .Home-next-prev {
+  background-color: black;
+  width: 50px;
+  height: 50px;
+}
+
+#carouselExampleCaptions:hover .Home-captions.active {
+  background-color: black;
+}
+
+#carouselExampleCaptions:hover .Home-captions {
+  background-color: #b8a392;
+}
+
+.Home-Title {
+  padding-top: 50px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 15px 0;
+  color: #000000;
+  position: relative;
+  font: 700 40px/48px 'Roboto', sans-serif;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+}
+
+.Home-Title:after {
+  content: "";
+  border-bottom: 2px solid #b8a392;
+  display: block;
+  margin-left: 0;
+  text-align: center;
+  margin: 15px auto 0px;
+  width: 70px;
+}
+
+.Home-product .row {
+  margin: 15px;
+}
+
+.Home-category-drink a {
+  color: black;
+}
+
+.Home-category-drink a:hover {
+  color: #b8a392
+}
+
+.Home-category-drink .active {
+  color: #b8a392;
+}
+
+.Home-name-product {
+  text-align: center;
+  color: #b8a392;
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 18px;
+  font-weight: 400;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.Home-price-product {
+  text-align: center;
+  color: #99999999;
+  font-size: 12px;
+}
+
+.Home-detail-product {
+  padding: 12px 5px 14px;
+}
+
+.Home-product {
+  padding: 10px 0 12px 0;
+}
+
+.Home-product:hover {
+  border: 2px solid #b8a392;
+}
+
+.Home-column-food {
+  display: flex;
+  flex-direction: column;
+}
+
+.Home-Food {
+  padding: 35px;
+}
+
+.Home-Food img:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.Home-order {
+  display:none;
+}
+
+.Home-product:hover .Home-order {
+  display: block;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 30px 20px 30px;
+  color: #99999999;
+  cursor: pointer;
+}
+
+.Home-order i:hover {
+  color: #b8a392
+}
+
+.active-order-icon {
+  color: #b8a392;
+}

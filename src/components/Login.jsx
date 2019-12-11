@@ -16,7 +16,7 @@ class Login extends Component {
       authenticateUser({ email: email, password: password });
     };
 
-    if (this.props.currentUser != null) {
+    if (this.props.currentUser.id != null) {
       return <Redirect to="/" />;
     }
 

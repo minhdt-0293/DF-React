@@ -1,8 +1,18 @@
 //Home.jsx
 import React from 'react';
+import '../css/Home.css';
+import Carouse from './Carouse';
+import Products from './Products';
 
 const Home = () => {
-  return <div>This is Home Page</div>;
+  return (
+    <>
+      <Carouse />
+      <div>
+        <Products />
+      </div>
+    </>
+  );
 };
 
 export default Home;

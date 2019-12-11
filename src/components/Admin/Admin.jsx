@@ -84,7 +84,7 @@ const Admin = ({
           </div>
         </NavLink>
       </div>
-      {renderRoutes(route.routes)}
+      <div className="container">{renderRoutes(route.routes)}</div>
     </>
   );
 };
