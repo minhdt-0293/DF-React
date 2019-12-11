@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/index';
 import Pagination from '../Pagination';
+import { Route, Link } from 'react-router-dom';
 
 class Categories extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class Categories extends Component {
         <tr key={category.id + category.name}>
           <th scope="row">{category.id}</th>
           <td>
-            <img src={category.image} />
+            <img src={`http://localhost:3000/${category.image.url}`} height="75" width="75" />
           </td>
           <td>{category.name}</td>
           <td>
@@ -71,6 +72,9 @@ class Categories extends Component {
         <div className="row">
           <div className="col-12">
             <h1 className="my-4 admin-title">Categories</h1>
+            <Link to="/admin/categories/new" className="btn btn-primary form-group">
+              <i className="fa fa-plus"></i>        Create category
+            </Link>
             <table className="table">
               <thead>
                 <tr>
