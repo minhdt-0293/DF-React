@@ -38,7 +38,7 @@ const showMenu = menus => {
 
 const rightMenu = props => {
   const { currentUser } = props;
-  if (currentUser != null) {
+  if (currentUser.id != null) {
     return (
       <>
         <li className="nav-item"></li>

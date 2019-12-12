@@ -1,6 +1,16 @@
 import * as types from './../constants/ActionTypes';
 
-const currentUser = JSON.parse(localStorage.getItem('current_user'));
+const defaultCurrentUser = {
+  id: null,
+  email: '',
+  username: '',
+  address: '',
+  image: { url: '' },
+  phone: '',
+  role: 2
+};
+const currentUser =
+  JSON.parse(localStorage.getItem('current_user')) || defaultCurrentUser;
 const initialState = { fetching: false, error: null, currentUser: currentUser };
 
 const reducer = (state = initialState, action) => {
@@ -40,7 +50,7 @@ const reducer = (state = initialState, action) => {
       localStorage.removeItem('current_user');
       return {
         ...state,
-        currentUser: null
+        currentUser: defaultCurrentUser
       };
     default:
       return state;
