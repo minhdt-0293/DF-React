@@ -2,47 +2,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/index';
 import Pagination from '../Pagination';
+import ErrorField from './ErrorField';
 import { Route, Link, Redirect } from 'react-router-dom';
-import '../../css/App.css';
+import callApi from '../../sagas/call_api';
 
 class NewAdminCategory extends Component {
 
   constructor() {
     super();
     this.state = {
-      name: "",
+      name: '',
       nameErrors: [],
       imageErrors: []
     };
+  };
+
+  setError = (field, errors, state_key) => {
+    let fieldErrors = (errors[field] && errors[field].length > 0) ? errors[field] : [] ;
+    this.setState({ [state_key] : fieldErrors });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
 
-    fetch('http://localhost:3000/api/categories', {
-      method: 'POST',
-      body: data,
-    }).then(results => results.json()).then(
-      data => {
+    callApi('POST', 'categories', data).then(
+      result => {
+        let data = result.data
         if(data.status && data.status == "ok") {
           this.props.history.push('/admin/categories');
         }
         else {
-          if (data.errors == {}) {
-            this.setState({
-              nameErrors: [],
-              imageErrors: []
-            })
-          }
-          else {
-            let nameErrors = (data.errors.name && data.errors.name.length > 0) ? data.errors.name : []
-            let imageErrors = (data.errors.image && data.errors.image.length > 0) ? data.errors.image : []
-            this.setState({
-              nameErrors,
-              imageErrors
-            });
-          }
+          this.setError('name', data.errors, 'nameErrors');
+          this.setError('image', data.errors, 'imageErrors');
         }
       }
     );
@@ -65,17 +57,6 @@ class NewAdminCategory extends Component {
         <button type="submit" className="btn btn-primary">Create</button>
       </form>
     );
-  }
-}
-
-function ErrorField(props) {
-  if (props.errors.length > 0) {
-    return (
-      props.errors.map( (error, index) => <p key={index + 1} className = "error">{props.field} {error}</p>)
-    );
-  }
-  else {
-    return("");
   }
 }
 

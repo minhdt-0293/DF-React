@@ -34,10 +34,7 @@ class AdminCategories extends Component {
           <td>
             <img src={category.image} />
           </td>
-          <td>{
-           category.name
-          }
-          </td>
+          <td>{category.name}</td>
           <td>
             <span
               className="text-danger mx-1 cursor-pointer"
