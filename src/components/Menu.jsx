@@ -1,6 +1,8 @@
 import React from 'react';
-import { Route, Link, NavLink } from 'react-router-dom';
-import './../css/Menu.css';
+import {
+  Link,
+  NavLink
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './../actions/index';
 
@@ -10,27 +12,15 @@ const menus = [
   { name: 'Categories', to: '/categories' }
 ];
 
-const MenuLink = ({ label, to, event }) => {
-  return (
-    <li>
-      <NavLink
-        exact
-        to={to}
-        className="nav-link"
-        onClick={event}
-        activeClassName="active"
-      >
-        {label}
-      </NavLink>
-    </li>
-  );
-};
-
 const showMenu = menus => {
   let result = null;
   if (menus.length > 0) {
     result = menus.map((menu, i) => {
-      return <MenuLink key={i} label={menu.name} to={menu.to} />;
+      return (
+        <li key={i} className="nav-item">
+          <NavLink exact to={menu.to} className="nav-link">{menu.name}</NavLink>
+        </li>
+      )
     });
   }
   return result;
@@ -42,9 +32,9 @@ const rightMenu = props => {
     return (
       <>
         <li className="nav-item"></li>
-        <li className="nav-item dropleft">
-          <a
-            className="nav-link dropdown-toggle"
+        <li className="nav-item dropdown">
+          <span
+            className="nav-link dropdown-toggle cursor-pointer"
             href="#"
             id="navbarDropdownMenuLink"
             data-toggle="dropdown"
@@ -54,9 +44,10 @@ const rightMenu = props => {
             <img
               src={currentUser.image.url}
               className="rounded-circle z-depth-0 avatar"
-              alt="avatar image"
+              alt="avatar"
             />
-          </a>
+            <Link to="#" className="mx-1 text-white text-decoration-none">{currentUser.username}</Link>
+          </span>
 
           <div
             className="dropdown-menu"
@@ -78,7 +69,6 @@ const rightMenu = props => {
             </Link>
           </div>
         </li>
-        <li className="mgt-15 Menu-username">{currentUser.username}</li>
       </>
     );
   } else {
@@ -108,7 +98,7 @@ const Menu = props => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           {showMenu(menus)}
-          {showAdmin(props.currentUser.role)}
+          {props.currentUser !== null ? showAdmin(props.currentUser.role) : <></>}
         </ul>
         <ul className="navbar-nav ml-auto">{rightMenu(props)}</ul>
       </div>

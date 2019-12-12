@@ -6,10 +6,10 @@ const Flash = props => {
   let className = `alert alert-${type}`;
   let elm = document.getElementsByClassName('alert');
   useEffect(() => {
-    if (elm[0] != undefined) {
+    if (elm[0] !== undefined) {
       elm[0].style.display = 'block';
       setTimeout(function() {
-        if (elm[0] != undefined) {
+        if (elm[0] !== undefined) {
           elm[0].style.display = 'none';
         }
       }, 3000);

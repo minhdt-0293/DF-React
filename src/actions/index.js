@@ -9,7 +9,7 @@ export const logIn = data => {
 
 export const fetchCategories = data => {
   return {
-    type: types.FECTH_CATEGORIES,
+    type: types.FETCH_CATEGORIES,
     data
   };
 };
@@ -56,3 +56,115 @@ export const fetchProductsByCategory = (categoryId, productType) => ({
   categoryId,
   productType
 });
+
+export const addCategory = data => {
+  return {
+    type: types.ADD_CATEGORY,
+    data
+  };
+};
+
+export const updateCategory = (data, categoryId) => {
+  return {
+    type: types.UPDATE_CATEGORY,
+    data,
+    categoryId
+  };
+};
+
+export const fetchCategory = id => {
+  return {
+    type: types.FETCH_CATEGORY,
+    id
+  }
+}
+
+export const fetchProducts = data => {
+  return {
+    type: types.FETCH_PRODUCTS,
+    data
+  };
+};
+
+export const deleteProduct = data => {
+  return {
+    type: types.DELETE_PRODUCT,
+    data
+  };
+};
+
+export const updateProduct = (data, productId) => {
+  return {
+    type: types.UPDATE_PRODUCT,
+    data,
+    productId
+  };
+};
+
+export const fetchProduct = id => {
+  return {
+    type: types.FETCH_PRODUCT,
+    id
+  }
+}
+
+export const addProduct = data => {
+  return {
+    type: types.ADD_PRODUCT,
+    data
+  };
+};
+
+export const fetchAllCategories = (data) => {
+  return {
+    type: types.ALL_CATEGORIES,
+    data
+  }
+}
+
+export const changeStatusOrder = (id, data) => {
+  return {
+    type: types.CHANGE_STATUS_ORDER,
+    data
+  }
+}
+
+export const fetchOrders = (data) => {
+  return {
+    type: types.FETCH_ORDERS,
+    data
+  }
+}
+
+export const updateOrder = (data, orderId) => {
+  return {
+    type: types.UPDATE_ORDER,
+    data,
+    orderId
+  };
+};
+
+export const fetchOrder = id => {
+  return {
+    type: types.FETCH_ORDER,
+    id
+  }
+}
+
+export const clearOldOrder = () => {
+  return {
+    type: types.CLEAR_OLD_ORDER
+  }
+}
+
+export const clearOldCategory = () => {
+  return {
+    type: types.CLEAR_OLD_CATEGORY
+  }
+}
+
+export const clearOldProduct = () => {
+  return {
+    type: types.CLEAR_OLD_PRODUCT
+  }
+}

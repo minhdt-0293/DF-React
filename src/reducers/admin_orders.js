@@ -3,51 +3,39 @@ import * as types from './../constants/ActionTypes';
 const initialState = {
   fetching: false,
   error: null,
-  categories: [],
+  orders: [],
   total_pages: 1,
   currentPage: 1
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.FETCH_CATEGORIES:
+    case types.FETCH_ORDERS:
       return { ...state, fetching: true, error: null };
-    case types.FETCH_CATEGORIES_SUCCESS:
+    case types.FETCH_ORDERS_SUCCESS:
       return {
         ...state,
         fetching: false,
         error: null,
-        categories: action.data.categories,
+        orders: action.data.orders,
         total_pages: action.data.total_pages
       };
-    case types.FETCH_CATEGORIES_FAILURE:
+    case types.FETCH_ORDERS_FAILURE:
       return { ...state, fetching: false, error: action.error };
-    case types.DELETE_CATEGORY:
+    case types.CHANGE_STATUS_ORDER:
       return { ...state, fetching: true, error: null };
-    case types.DELETE_CATEGORY_SUCCESS:
+    case types.CHANGE_STATUS_ORDER_SUCCESS:
       return {
         ...state,
         fetching: false,
         error: null,
-        categories: action.data.categories,
+        orders: action.data.orders,
         total_pages: action.data.total_pages
       };
-    case types.DELETE_CATEGORY_FAILURE:
+    case types.CHANGE_STATUS_ORDER_FAILURE:
       return { ...state, fetching: false, error: action.error };
     case types.SET_CURRENT_PAGE:
       return { ...state, currentPage: action.currentPage };
-    case types.ALL_CATEGORIES:
-        return { ...state, fetching: true, error: null };
-      case types.ALL_CATEGORIES_SUCCESS:
-        return {
-          ...state,
-          fetching: false,
-          error: null,
-          allCategories: action.data.categories,
-          status: action.data.status
-        };
-      case types.ALL_CATEGORIES_FAILURE:
-        return { ...state, fetching: false, error: action.error };
     default:
       return state;
   }

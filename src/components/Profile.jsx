@@ -125,7 +125,7 @@ class Profile extends Component {
           </label>
           <div className="col-sm-10 Profile-upload-image">
             <div className="Profile-image">
-              <img src={image} />
+              <img src={image} alt={username} />
             </div>
             <div className="Profile-browser col-sm-10">
               <input

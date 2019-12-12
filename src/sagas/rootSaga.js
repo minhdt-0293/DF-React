@@ -5,6 +5,13 @@ import { updateProfileSaga } from './update_profile';
 import { adminInfoSaga } from './admin_info';
 import { categoriesSaga } from './categories';
 import { productsSaga } from './products';
+import { adminAddCategory} from './admin_add_category';
+import { adminUpdateCategory } from './admin_update_category';
+import { adminProductsSaga } from './admin_products';
+import { adminUpdateProduct} from './admin_update_product';
+import { adminAddProduct } from './admin_add_product';
+import { adminOrdersSaga } from './admin_orders';
+import { adminUpdateOrder } from './admin_update_order';
 
 export default function* rootSaga() {
   yield all([
@@ -12,8 +19,14 @@ export default function* rootSaga() {
     adminCategoriesSaga(),
     updateProfileSaga(),
     adminInfoSaga(),
-
     categoriesSaga(),
-    productsSaga()
+    productsSaga(),
+    adminAddCategory(),
+    adminUpdateCategory(),
+    adminProductsSaga(),
+    adminUpdateProduct(),
+    adminAddProduct(),
+    adminOrdersSaga(),
+    adminUpdateOrder()
   ]);
 }

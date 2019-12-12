@@ -37,9 +37,9 @@ const foodProduct = products => {
   if (products.length > 0) {
     result = products.map(product => (
       <div className="Home-column-food" key={product.id}>
-        <a href="#" className="mb-4 h-100">
+        <span className="mb-4 h-100">
           <img className="img-fluid" src={product.image.url} alt="" />
-        </a>
+        </span>
       </div>
     ));
   }
