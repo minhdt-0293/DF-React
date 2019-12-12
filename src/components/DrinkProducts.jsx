@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const showProduct = drinkProducts => {
   var result = null;
@@ -10,9 +11,9 @@ const showProduct = drinkProducts => {
           className="col-lg-3 col-md-4 col-6 thumbnail Home-product"
           key={index}
         >
-          <a href="javacript:void(0)" className="mb-4 h-100">
+          <Link to={`/products/${product.id}`} className="mb-4 h-100">
             <img className="img-fluid" src={product.image.url} alt="" />
-          </a>
+          </Link>
           <div className="Home-detail-product">
             <div className="Home-order">
               <i

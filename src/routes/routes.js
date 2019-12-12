@@ -13,6 +13,7 @@ import AdminEditProduct from '../components/Admin/EditProduct';
 import AdminAddProduct from '../components/Admin/AddProduct';
 import AdminOrders from '../components/Admin/Orders';
 import AdminEditOrder from '../components/Admin/EditOrder';
+import Product from '../components/Product';
 
 const routerAdmin = [
   {
@@ -87,6 +88,12 @@ const routes = [
         name: 'profile',
         exact: true,
         component: Profile
+      },
+      {
+        path: '/products/:id',
+        name: 'product',
+        exact: true,
+        component: Product
       },
       {
         path: '',
