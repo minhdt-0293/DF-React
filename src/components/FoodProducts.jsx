@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const showProduct = foodProducts => {
   let resultFirst = null;
@@ -37,9 +38,9 @@ const foodProduct = products => {
   if (products.length > 0) {
     result = products.map(product => (
       <div className="Home-column-food" key={product.id}>
-        <span className="mb-4 h-100">
+        <Link to={`/products/${product.id}`} className="mb-4 h-100">
           <img className="img-fluid" src={product.image.url} alt="" />
-        </span>
+        </Link>
       </div>
     ));
   }
