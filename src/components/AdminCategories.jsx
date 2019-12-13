@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import Pagination from './Pagination';
+import { Route, Link } from 'react-router-dom';
 
 class AdminCategories extends Component {
   constructor(props) {

@@ -108,7 +108,7 @@ const Menu = props => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           {showMenu(menus)}
-          {showAdmin(props.currentUser.role)}
+          {showAdmin(props.currentUser === null ? null : props.currentUser.role)}
         </ul>
         <ul className="navbar-nav ml-auto">{rightMenu(props)}</ul>
       </div>
